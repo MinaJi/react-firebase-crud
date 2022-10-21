@@ -4,21 +4,48 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { Container, Grid } from "@mui/material";
+import { GiOrangeSlice } from "react-icons/gi";
 
 // 스타일 컴포넌트
-const StyledLoginDiv = styled.div`
-  font-family: "Chivo", sans-serif;
-  font-size: 70px;
-  color: #000000;
+const GridContainer = styled(Grid)`
+  && {
+    height: 600px;
+    background-color: #fff;
+    border-radius: 30px;
+    margin-top: 6%;
+    overflow: hidden;
+  }
+
+  .left {
+    background-color: #f37521;
+    width: 40%;
+  }
 `;
 
-const StyledDiv = styled.div`
-  border-radius: 30px;
-  background-color: #ffffff;
-  height: 600px;
-  width: 400px;
-  margin: 0 auto;
-  margin-top: 5%;
+const StyledLoginDiv = styled.div`
+  font-size: 30px;
+  text-align: left;
+  margin-top: 50%;
+  font-weight: bold;
+  padding-left: 40px;
+  padding-right: 40px;
+
+  .gi {
+    padding-bottom: 2px;
+  }
+
+  .contents {
+    font-weight: normal;
+    font-size: 16px;
+    padding-top: 10px;
+    line-height: 130%;
+  }
+`;
+
+const LoginGrid = styled(Grid)`
+  && {
+  }
 `;
 
 function Login() {
@@ -42,25 +69,47 @@ function Login() {
   };
 
   return (
-    <StyledDiv>
-      <div className="login">
-        <StyledLoginDiv>Login</StyledLoginDiv>
-        <form onSubmit={handleLogin}>
-          <input
-            type="email"
-            placeholder="email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button type="submit">Login</button>
-          {errormsg && <span>아이디와 비밀번호를 확인해주세요.</span>}
-        </form>
-      </div>
-    </StyledDiv>
+    <Container>
+      <GridContainer container>
+        <Grid item className="left">
+          <StyledLoginDiv>
+            <GiOrangeSlice className="gi" />
+            <p>로그인</p>
+            <div className="contents">
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit
+                ipsam facere quas voluptates, totam, praesentium optio nam ab
+                sunt.
+              </p>
+              <br />
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+          </StyledLoginDiv>
+        </Grid>
+        <Grid item>
+          <div className="login">
+            <form onSubmit={handleLogin}>
+              <Grid item>
+                <input
+                  type="email"
+                  placeholder="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </Grid>
+              <Grid item>
+                <input
+                  type="password"
+                  placeholder="password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </Grid>
+              <button type="submit">Login</button>
+              {errormsg && <span>아이디와 비밀번호를 확인해주세요.</span>}
+            </form>
+          </div>
+        </Grid>
+      </GridContainer>
+    </Container>
   );
 }
 
