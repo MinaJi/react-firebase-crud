@@ -27,16 +27,20 @@ const StyledLoginDiv = styled.div`
   font-size: 30px;
   text-align: left;
   margin-top: 50%;
-  font-weight: bold;
   padding-left: 40px;
   padding-right: 40px;
+
+  .logintext {
+    color: #82dc9b;
+    font-weight: bold;
+    text-shadow: 2px 2px #000;
+  }
 
   .gi {
     padding-bottom: 2px;
   }
 
   .contents {
-    font-weight: normal;
     font-size: 16px;
     padding-top: 10px;
     line-height: 130%;
@@ -45,6 +49,22 @@ const StyledLoginDiv = styled.div`
 
 const LoginGrid = styled(Grid)`
   && {
+  }
+`;
+
+const Btn = styled.button`
+  width: 110px;
+  height: 40px;
+  background-color: #000000;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+
+  :hover {
+    background-color: #82dc9b;
+    /* border: 1px solid black; */
+    color: #000;
   }
 `;
 
@@ -74,7 +94,7 @@ function Login() {
         <Grid item className="left">
           <StyledLoginDiv>
             <GiOrangeSlice className="gi" />
-            <p>로그인</p>
+            <p className="logintext">로그인</p>
             <div className="contents">
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit
@@ -103,7 +123,7 @@ function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </Grid>
-              <button type="submit">Login</button>
+              <Btn type="submit">Login</Btn>
               {errormsg && <span>아이디와 비밀번호를 확인해주세요.</span>}
             </form>
           </div>
