@@ -1,14 +1,33 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
+import React, { useContext } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
+import { AuthContext } from "./context/AuthContext";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 
 function Router() {
+  const { currentUser } = useContext(AuthContext);
+
+  const RequireAuth = ({ children }) => {
+    return currentUser ? children : <Navigate to="/login" />;
+  };
+
+  console.log(currentUser);
+
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/">
+          <Route path="/login" element={<Login />} />
+          <Route
+            index
+            path="/"
+            element={
+              <RequireAuth>
+                <Home />
+              </RequireAuth>
+            }
+          />
+        </Route>
       </Routes>
     </>
   );

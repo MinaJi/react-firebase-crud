@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase-config";
@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Container, Grid } from "@mui/material";
 import { GiOrangeSlice } from "react-icons/gi";
+import { AuthContext } from "../context/AuthContext";
 
 // 스타일 컴포넌트
 const GridContainer = styled(Grid)`
@@ -70,6 +71,7 @@ const Btn = styled.button`
 
 function Login() {
   const navi = useNavigate();
+  const { dispatch } = useContext(AuthContext);
 
   const [errormsg, setErrorMsg] = useState(false);
   const [email, setEmail] = useState("");
@@ -81,6 +83,7 @@ function Login() {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
+        dispatch({ type: "LOGIN", payload: user });
         navi("/");
       })
       .catch((error) => {
