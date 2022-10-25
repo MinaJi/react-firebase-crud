@@ -1,9 +1,9 @@
 import { Container, Grid } from "@mui/material";
-import React, { useState } from "react";
+import { updateProfile } from "firebase/auth";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { AuthContext } from "../context/AuthContext";
 import { auth } from "../firebase-config";
-import { async } from "@firebase/util";
 
 const StyledGrid = styled(Grid)`
   background-color: #ffffff;
@@ -18,11 +18,18 @@ function SignUp() {
   const [nickname, setNickname] = useState("");
   const [error, setError] = useState(false);
 
+  const { createUser } = useContext(AuthContext);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     try {
-        await createUser
+      await createUser(email, password);
+      updateProfile(auth.currentUser, {
+        displayName: nickname,
+      });
+    //   console.log(auth.currentUser.displayName) 왜 null?
+    // 가입시에 이름 입력받는방법
     } catch (error) {
       setError(error.message);
       console.log(error.message);
