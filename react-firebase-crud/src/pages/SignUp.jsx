@@ -4,6 +4,7 @@ import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { AuthContext } from "../context/AuthContext";
 import { auth } from "../firebase-config";
+import { useNavigate } from "react-router-dom";
 
 const StyledGrid = styled(Grid)`
   background-color: #ffffff;
@@ -13,6 +14,7 @@ const StyledGrid = styled(Grid)`
 `;
 
 function SignUp() {
+  const navi = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [nickname, setNickname] = useState("");
@@ -25,11 +27,7 @@ function SignUp() {
     setError("");
     try {
       await createUser(email, password);
-      updateProfile(auth.currentUser, {
-        displayName: nickname,
-      });
-    //   console.log(auth.currentUser.displayName) 왜 null?
-    // 가입시에 이름 입력받는방법
+      navi("/");
     } catch (error) {
       setError(error.message);
       console.log(error.message);
@@ -63,6 +61,9 @@ function SignUp() {
               <button type="submit">가입하기</button>
             </Grid>
           </form>
+          <Grid item>
+            <span>이미 가입하셨나요? 로그인하러 가기</span>
+          </Grid>
         </StyledGrid>
       </Grid>
     </Container>

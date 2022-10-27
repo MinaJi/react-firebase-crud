@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { AuthContext } from "./context/AuthContext";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import MypageMain from "./pages/MypageMain";
 import SignUp from "./pages/SignUp";
 
 function Router() {
@@ -19,6 +20,7 @@ function Router() {
         <Route path="/">
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/mypage" element={<MypageMain />} />
           <Route
             index
             path="/"
