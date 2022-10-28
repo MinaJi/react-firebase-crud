@@ -1,9 +1,7 @@
 import { Container, Grid } from "@mui/material";
-import { updateProfile } from "firebase/auth";
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { AuthContext } from "../context/AuthContext";
-import { auth } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
 
 const StyledGrid = styled(Grid)`
@@ -17,7 +15,7 @@ function SignUp() {
   const navi = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [nickname, setNickname] = useState("");
+  const [nickname, setNickname] = useState(""); // firebase 가입할때 닉네임 등 추가하는방법...
   const [error, setError] = useState(false);
 
   const { createUser } = useContext(AuthContext);
