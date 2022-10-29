@@ -41,7 +41,7 @@ function SignUp() {
           </Grid>
           <form onSubmit={handleSubmit}>
             <Grid item>
-              이메일{" "}
+              이메일
               <input type="email" onChange={(e) => setEmail(e.target.value)} />
             </Grid>
             <Grid item>

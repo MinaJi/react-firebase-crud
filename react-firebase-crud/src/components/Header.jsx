@@ -22,6 +22,10 @@ const Btn = styled.button`
   padding: 13px;
   border-radius: 20px;
   cursor: pointer;
+  :hover {
+    background-color: #f37521;
+    border: none;
+  }
 `;
 
 function Header() {

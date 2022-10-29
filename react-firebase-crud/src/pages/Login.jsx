@@ -4,9 +4,15 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { Container, Grid } from "@mui/material";
+import { Container, Grid, InputAdornment } from "@mui/material";
 import { GiOrangeSlice } from "react-icons/gi";
 import { AuthContext } from "../context/AuthContext";
+import { MdVisibility } from "react-icons/md";
+import { InputUnstyled } from "@mui/base";
+// import UnstyledInputBasic from "../components/UnstyledInput";
+import UseInput from "../components/UnstyledInput";
+import PropTypes from "prop-types";
+import '../App.css'
 
 // 스타일 컴포넌트
 const GridContainer = styled(Grid)`
@@ -21,6 +27,10 @@ const GridContainer = styled(Grid)`
   .left {
     background-color: #f37521;
     width: 40%;
+  }
+
+  .right {
+    width: 60%;
   }
 `;
 
@@ -48,8 +58,25 @@ const StyledLoginDiv = styled.div`
   }
 `;
 
-const LoginGrid = styled(Grid)`
-  && {
+const StyledContainer = styled(Grid)`
+  justify-content: center;
+  margin-top: 40%;
+`;
+
+const StyledInput = styled("input")`
+  border: none;
+  background-color: #e6e6e6;
+  border-radius: 30px;
+  width: 300px;
+  height: 40px;
+  padding: 2%;
+  margin-bottom: 5px;
+  padding-left: 10px;
+  ::-webkit-input-placeholder {
+    padding-left: 6px;
+  }
+  :focus {
+    outline: none;
   }
 `;
 
@@ -64,7 +91,6 @@ const Btn = styled.button`
 
   :hover {
     background-color: #82dc9b;
-    /* border: 1px solid black; */
     color: #000;
   }
 `;
@@ -109,26 +135,30 @@ function Login() {
             </div>
           </StyledLoginDiv>
         </Grid>
-        <Grid item>
+        <Grid item className="right">
           <div className="login">
-            <form onSubmit={handleLogin}>
-              <Grid item>
-                <input
-                  type="email"
-                  placeholder="email"
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </Grid>
-              <Grid item>
-                <input
-                  type="password"
-                  placeholder="password"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </Grid>
-              <Btn type="submit">Login</Btn>
-              {errormsg && <span>아이디와 비밀번호를 확인해주세요.</span>}
-            </form>
+            <StyledContainer container>
+              <form onSubmit={handleLogin}>
+                <Grid item>
+                  <StyledInput
+                    type="email"
+                    placeholder="email"
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </Grid>
+                <Grid item>
+                  {/* <InputUnstyled
+                    slotProps={{ input: { className: "my-input" } }}
+                    type="password"
+                    placeholder="password"
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  <MdVisibility className="icon" /> */}
+                </Grid>
+                <Btn type="submit">Login</Btn>
+                {errormsg && <span>아이디와 비밀번호를 확인해주세요.</span>}
+              </form>
+            </StyledContainer>
           </div>
         </Grid>
       </GridContainer>
