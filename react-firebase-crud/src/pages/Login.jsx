@@ -4,12 +4,9 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { Container, Grid, Input, InputAdornment } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 import { GiOrangeSlice } from "react-icons/gi";
 import { AuthContext } from "../context/AuthContext";
-import { MdVisibility } from "react-icons/md";
-import { InputUnstyled } from "@mui/base";
-import PropTypes from "prop-types";
 
 // 스타일 컴포넌트
 const GridContainer = styled(Grid)`
@@ -76,33 +73,6 @@ const StyledInput = styled("input")`
     outline: none;
   }
 `;
-
-const StyledInputElement = muistyled('input')`
-  border: none;
-  background-color: #e6e6e6;
-  border-radius: 30px;
-  width: 300px;
-  height: 40px;
-  padding: 2%;
-  margin-bottom: 5px;
-  padding-left: 10px;
-  ::-webkit-input-placeholder {
-    padding-left: 6px;
-  }
-  :focus {
-    outline: none;
-  }
-`;
-
-const CustomInput = React.forwardRef(function CustomInput(props, ref) {
-  return (
-    <InputUnstyled slots={{ input: StyledInputElement }} {...props} ref={ref} />
-  );
-});
-
-export function UnstyledInputBasic() {
-  return <CustomInput aria-label="Demo input" placeholder="Type something…" />;
-}
 
 const Btn = styled.button`
   width: 110px;
@@ -171,14 +141,11 @@ function Login() {
                   />
                 </Grid>
                 <Grid item>
-                  <UnstyledInputBasic />
-                  {/* <InputUnstyled
-                    slotProps={{ input: { className: "my-input" } }}
+                  <StyledInput
                     type="password"
                     placeholder="password"
                     onChange={(e) => setPassword(e.target.value)}
                   />
-                  <MdVisibility className="icon" /> */}
                 </Grid>
                 <Btn type="submit">Login</Btn>
                 {errormsg && <span>아이디와 비밀번호를 확인해주세요.</span>}
