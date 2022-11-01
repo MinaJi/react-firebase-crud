@@ -49,7 +49,7 @@ function Header() {
           ) : (
             <Btn
               onClick={() => {
-                navi("/login");
+                navi("/signin");
               }}
             >
               Sign in
