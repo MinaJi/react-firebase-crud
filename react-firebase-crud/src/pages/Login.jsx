@@ -3,14 +3,17 @@ import styled from "styled-components";
 import { Container, Grid } from "@mui/material";
 import { GiOrangeSlice } from "react-icons/gi";
 import LoginForm from "../components/LoginForm";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useNavigate } from "react-router-dom";
 
 // 스타일 컴포넌트
 const GridContainer = styled(Grid)`
   && {
-    height: 600px;
+    height: 100%;
     background-color: #fff;
     border-radius: 30px;
     margin-top: 6%;
+    margin-bottom: 6%;
     overflow: hidden;
     direction: column;
     align-items: stretch;
@@ -38,14 +41,23 @@ const GridContainer = styled(Grid)`
   }
 `;
 
+const IconDiv = styled(Grid)`
+  && {
+    margin-top: 4%;
+    padding-left: 10px;
+    font-size: 30px;
+    cursor: pointer;
+  }
+`;
+
 const StyledLoginDiv = styled.div`
   font-size: 30px;
   text-align: left;
-  margin-top: 50%;
+  margin-top: 40%;
   padding-left: 40px;
   padding-right: 40px;
   @media screen and (max-width: 576px) {
-    margin-top: 18%;
+    margin-top: 4%;
   }
 
   .logintext {
@@ -70,10 +82,20 @@ const StyledLoginDiv = styled.div`
 `;
 
 function Login() {
+  const navi = useNavigate();
+
   return (
     <Container>
       <GridContainer container>
         <Grid item className="left">
+          <IconDiv item>
+            <ArrowBackIcon
+              fontSize="inherite"
+              onClick={() => {
+                navi("/");
+              }}
+            />
+          </IconDiv>
           <StyledLoginDiv>
             <GiOrangeSlice className="gi" />
             <p className="logintext">로그인</p>

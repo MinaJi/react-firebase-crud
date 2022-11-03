@@ -20,6 +20,7 @@ const StyledContainer = styled(Grid)`
       margin-bottom: 5px;
       margin-top: 10px;
       margin-left: 10px;
+      font-size: 15px;
     }
     @media screen and (max-width: 576px) {
       width: 100%;
@@ -38,6 +39,7 @@ const StyledInput = styled.input`
   height: 60px;
   padding: 2%;
   margin-bottom: 5px;
+  padding-left: 3%;
   box-sizing: border-box;
   ::-webkit-input-placeholder {
     padding-left: 6px;
@@ -102,6 +104,7 @@ const LoginBtn = styled.button`
   border-radius: 30px;
   padding: 2%;
   margin-top: 7px;
+  font-weight: bold;
   cursor: pointer;
   :hover {
     background-color: #82dc9b;
@@ -123,9 +126,13 @@ const StyledGrid = styled(Grid)`
     border: 1px solid black;
     border-radius: 20px;
     background-color: #fff;
-    margin-bottom: 5px;
+    margin-bottom: 2%;
+    font-weight: bold;
     @media screen and (max-width: 700px) {
       width: 96%;
+    }
+    :hover {
+      border: 2px solid black;
     }
   }
 `;
@@ -141,6 +148,13 @@ const ErrorMsg = styled(Grid)`
     color: #f37521;
     margin-right: 2px;
   }
+`;
+
+const StyledDiv = styled.div`
+  font-weight: bold;
+  font-size: 15px;
+  padding-bottom: 4%;
+  padding-top: 5%;
 `;
 
 function LoginForm() {
@@ -172,7 +186,6 @@ function LoginForm() {
 
   return (
     <>
-      {/* <StyledContainer container alignItems="center" direction="column"> */}
       <StyledContainer>
         <form onSubmit={handleLogin} style={{ boxSizing: "border-box" }}>
           <Grid item>
@@ -213,6 +226,9 @@ function LoginForm() {
         </form>
         <StyledGrid item>
           <Grid item>
+            <StyledDiv>
+              <span>아직 회원이 아니신가요? 회원가입을 해주세요.</span>
+            </StyledDiv>
             <button
               className="btn"
               onClick={() => {

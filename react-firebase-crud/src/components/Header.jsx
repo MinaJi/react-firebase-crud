@@ -35,6 +35,8 @@ function Header() {
   const handleLogout = async () => {
     try {
       await logout();
+      navi("/");
+      console.log("로그아웃")
     } catch (error) {
       console.log(error.message);
     }
@@ -74,6 +76,15 @@ function Header() {
               Sign up
             </Btn>
           )}
+        </Grid>
+        <Grid item>
+          <Btn
+            onClick={() => {
+              navi("/board");
+            }}
+          >
+            게시판
+          </Btn>
         </Grid>
       </StyledHeader>
     </>
